@@ -1,0 +1,846 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Rust-Notes</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introito</a></li><li class="chapter-item expanded "><a href="Tipos/Tipos.html"><strong aria-hidden="true">1.</strong> Tipos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Tipos/Numéricos.html"><strong aria-hidden="true">1.1.</strong> Numéricos</a></li><li class="chapter-item expanded "><a href="Tipos/Operadores.html"><strong aria-hidden="true">1.2.</strong> Operadores</a></li><li class="chapter-item expanded "><a href="Tipos/Strings.html"><strong aria-hidden="true">1.3.</strong> Strings</a></li><li class="chapter-item expanded "><a href="Tipos/Arrays.html"><strong aria-hidden="true">1.4.</strong> Arrays</a></li><li class="chapter-item expanded "><a href="Tipos/Tuplas.html"><strong aria-hidden="true">1.5.</strong> Tuplas</a></li><li class="chapter-item expanded "><a href="Tipos/Structs.html"><strong aria-hidden="true">1.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="Tipos/Enums.html"><strong aria-hidden="true">1.7.</strong> Enums</a></li><li class="chapter-item expanded "><a href="Tipos/Box.html"><strong aria-hidden="true">1.8.</strong> Box</a></li><li class="chapter-item expanded "><a href="Tipos/Vectores.html"><strong aria-hidden="true">1.9.</strong> Vectores</a></li><li class="chapter-item expanded "><a href="Tipos/Option.html"><strong aria-hidden="true">1.10.</strong> Option</a></li><li class="chapter-item expanded "><a href="Tipos/Result.html"><strong aria-hidden="true">1.11.</strong> Result</a></li><li class="chapter-item expanded "><a href="Tipos/Hashmap.html"><strong aria-hidden="true">1.12.</strong> Hashmap</a></li><li class="chapter-item expanded "><a href="Tipos/Random.html"><strong aria-hidden="true">1.13.</strong> Random</a></li></ol></li><li class="chapter-item expanded "><a href="Control/Control.html"><strong aria-hidden="true">2.</strong> Control</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Control/Loop.html"><strong aria-hidden="true">2.1.</strong> Loop</a></li><li class="chapter-item expanded "><a href="Control/For.html"><strong aria-hidden="true">2.2.</strong> For</a></li><li class="chapter-item expanded "><a href="Control/Match.html"><strong aria-hidden="true">2.3.</strong> Match</a></li><li class="chapter-item expanded "><a href="Control/Random.html"><strong aria-hidden="true">2.4.</strong> Random</a></li></ol></li><li class="chapter-item expanded "><a href="Funciones/Funciones.html"><strong aria-hidden="true">3.</strong> Funciones</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Funciones/Closures.html"><strong aria-hidden="true">3.1.</strong> Closures</a></li><li class="chapter-item expanded "><a href="Funciones/Funcional.html"><strong aria-hidden="true">3.2.</strong> Funcional</a></li><li class="chapter-item expanded "><a href="Funciones/Métodos.html"><strong aria-hidden="true">3.3.</strong> Métodos</a></li><li class="chapter-item expanded "><a href="Funciones/Random.html"><strong aria-hidden="true">3.4.</strong> Random</a></li></ol></li><li class="chapter-item expanded "><a href="Módulos/Módulos.html"><strong aria-hidden="true">4.</strong> Módulos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Módulos/Use.html"><strong aria-hidden="true">4.1.</strong> Use</a></li><li class="chapter-item expanded "><a href="Módulos/Mod.html"><strong aria-hidden="true">4.2.</strong> Mod</a></li><li class="chapter-item expanded "><a href="Módulos/Random.html"><strong aria-hidden="true">4.3.</strong> Random</a></li></ol></li><li class="chapter-item expanded "><a href="Scope/Scope.html"><strong aria-hidden="true">5.</strong> Scope</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Scope/Borrowing.html"><strong aria-hidden="true">5.1.</strong> Borrowing</a></li><li class="chapter-item expanded "><a href="Scope/Lifetimes.html"><strong aria-hidden="true">5.2.</strong> Lifetimes</a></li><li class="chapter-item expanded "><a href="Scope/Ownerships.html"><strong aria-hidden="true">5.3.</strong> Ownerships</a></li><li class="chapter-item expanded "><a href="Scope/Random.html"><strong aria-hidden="true">5.4.</strong> Random</a></li></ol></li><li class="chapter-item expanded "><a href="Generics/Generics.html"><strong aria-hidden="true">6.</strong> Generics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Generics/Funciones.html"><strong aria-hidden="true">6.1.</strong> Funciones</a></li><li class="chapter-item expanded "><a href="Generics/Impl.html"><strong aria-hidden="true">6.2.</strong> Impl</a></li><li class="chapter-item expanded "><a href="Generics/Traits.html"><strong aria-hidden="true">6.3.</strong> Traits</a></li><li class="chapter-item expanded "><a href="Generics/Lazos.html"><strong aria-hidden="true">6.4.</strong> Lazos</a></li><li class="chapter-item expanded "><a href="Generics/Random.html"><strong aria-hidden="true">6.5.</strong> Random</a></li></ol></li><li class="chapter-item expanded "><a href="Traits/Traits.html"><strong aria-hidden="true">7.</strong> Traits</a></li><li class="chapter-item expanded "><a href="Macros/Macros.html"><strong aria-hidden="true">8.</strong> Macros</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust-Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introito"><a class="header" href="#introito">Introito</a></h1>
+<p>Básicamente esto es lo que uso como referencia a la hora de programar en Rust porque la documentación oficial no me gusta</p>
+<p>¿Te gusta? Perfecto. ¿No te gusta? Me la peeela, me la pela (inserte música del Mercadona de fondo...).</p>
+<ul>
+<li><a href="../src/Tipos/Tipos.html">Tipos</a>
+<ul>
+<li><a href="../src/Tipos/Num%C3%A9ricos.html">Numéricos</a></li>
+<li><a href="../src/Tipos/Operadores.html">Operadores</a></li>
+<li><a href="../src/Tipos/Strings.html">Strings</a></li>
+<li><a href="../src/Tipos/Arrays.html">Arrays</a></li>
+<li><a href="../src/Tipos/Tuplas.html">Tuplas</a></li>
+<li><a href="../src/Tipos/Structs.html">Structs</a></li>
+<li><a href="../src/Tipos/Enums.html">Enums</a></li>
+<li><a href="../src/Tipos/Box.html">Box</a></li>
+<li><a href="../src/Tipos/Vectores.html">Vectores</a></li>
+<li><a href="../src/Tipos/Option.html">Option</a></li>
+<li><a href="../src/Tipos/Result.html">Result</a></li>
+<li><a href="../src/Tipos/Hashmap.html">Hashmap</a></li>
+<li><a href="../src/Tipos/Random.html">Random</a></li>
+</ul>
+</li>
+<li><a href="../src/Control/Control.html">Control</a>
+<ul>
+<li><a href="../src/Control/Loop.html">Loop</a></li>
+<li><a href="../src/Control/For.html">For</a></li>
+<li><a href="../src/Control/Match.html">Match</a></li>
+<li><a href="../src/Control/Random.html">Random</a></li>
+</ul>
+</li>
+<li><a href="../src/Funciones/Funciones.html">Funciones</a>
+<ul>
+<li><a href="../src/Funciones/Closures.html">Closures</a></li>
+<li><a href="../src/Funciones/Funcional.html">Funcional</a></li>
+<li><a href="../src/Funciones/M%C3%A9todos.html">Métodos</a></li>
+<li><a href="../src/Funciones/Random.html">Random</a></li>
+</ul>
+</li>
+<li><a href="../src/M%C3%B3dulos/M%C3%B3dulos.html">Módulos</a>
+<ul>
+<li><a href="../src/M%C3%B3dulos/Use.html">Use</a></li>
+<li><a href="../src/M%C3%B3dulos/Mod.html">Mod</a></li>
+<li><a href="../src/M%C3%B3dulos/Random.html">Random</a></li>
+</ul>
+</li>
+<li><a href="../src/Scope/Scope.html">Scope</a>
+<ul>
+<li><a href="../src/Scope/Borrowing.html">Borrowing</a></li>
+<li><a href="../src/Scope/Lifetimes.html">Lifetimes</a></li>
+<li><a href="../src/Scope/Ownerships.html">Ownerships</a></li>
+<li><a href="../src/Scope/Random.html">Random</a></li>
+</ul>
+</li>
+<li><a href="../src/Generics/Generics.html">Generics</a>
+<ul>
+<li><a href="../src/Generics/Funciones.html">Funciones</a></li>
+<li><a href="../src/Generics/Impl.html">Impl</a></li>
+<li><a href="../src/Generics/Traits.html">Traits</a></li>
+<li><a href="../src/Generics/Lazos.html">Lazos</a></li>
+<li><a href="../src/Generics/Random.html">Random</a></li>
+</ul>
+</li>
+<li><a href="../src/Traits/Traits.html">Traits</a></li>
+<li><a href="../src/Macros/Macros.html">Macros</a></li>
+</ul>
+<p>Iré metiendo más cosas con el tiempo (si eso)</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tipos"><a class="header" href="#tipos">Tipos</a></h1>
+<p>Referencia de los tipos comunes y las formas de trabajar con ellos.</p>
+<ul>
+<li><a href="Tipos/Num%C3%A9ricos.html">Numéricos</a></li>
+<li><a href="Tipos/Operadores.html">Operadores</a></li>
+<li><a href="Tipos/Strings.html">Strings</a></li>
+<li><a href="Tipos/Arrays.html">Arrays</a></li>
+<li><a href="Tipos/Tuplas.html">Tuplas</a></li>
+<li><a href="Tipos/Structs.html">Structs</a></li>
+<li><a href="Tipos/Enums.html">Enums</a></li>
+<li><a href="Tipos/Box.html">Box</a></li>
+<li><a href="Tipos/Vectores.html">Vectores</a></li>
+<li><a href="Tipos/Option.html">Option</a></li>
+<li><a href="Tipos/Result.html">Result</a></li>
+<li><a href="Tipos/Hashmap.html">Hashmap</a></li>
+<li><a href="Tipos/Random.html">Random</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="numéricos"><a class="header" href="#numéricos">Numéricos</a></h1>
+<p>Sintaxis general:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let MODIFICADOR VARIABLE: TIPO = VALOR;
+<span class="boring">}</span></code></pre></pre>
+<p>Sin <code>MODIFICADOR</code>, la <code>VARIABLE</code> es inmutable por defecto, esto es, como un <code>const</code> en C. Por tanto, para hacerlas mutables, necesitamos el modificador <code>mut</code>. También hay <code>const</code> y <code>static</code>, siendo ambas inmutables, con la única diferencia que la primera lo es en toda la ejecución del programa y la segunda sólo en el periodo de vida inferido.</p>
+<p>Los casting se hacen con <code>as TIPO</code>, al igual que se pueden definir nuevos tipos con <code>type NUEVO = VIEJO</code>.</p>
+<p>Respecto a los tipos numéricos:</p>
+<ul>
+<li>Con signo -&gt; XTAM -&gt; <code>i8</code>, <code>i16</code>, <code>i32</code>, <code>i64</code>, <code>i128</code> y <code>isize</code></li>
+<li>Sin signo -&gt; ^^   -&gt; <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>u128</code> y <code>usize</code></li>
+<li>Flotantes -&gt; ^^   -&gt; <code>f32</code> y <code>f64</code></li>
+</ul>
+<p>Podemos poner <code>_</code> entre medias de los números para hacerlos más legibles sin modificar su valor:</p>
+<pre><code class="language-rust  ignore">let _var = 1_000_000;
+let var = 1000000;</code></pre>
+<p>Luego tenemos los <code>char</code> que son UNICODE, ergo, 4 bytes</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="operadores"><a class="header" href="#operadores">Operadores</a></h1>
+<p>Aquí nos encontramos con los <code>bool</code>, que son o <code>true</code> o <code>false</code> en minúscula. El resto es como en todos los demás lenguajes de programación</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="strings"><a class="header" href="#strings">Strings</a></h1>
+<p>Hay dos tipos de strings:</p>
+<ul>
+<li><code>String</code>, que es un vector de <code>u8</code> codificados a UTF-8, almacenada en el heap, mutable y no termina en <code>\0</code>.</li>
+<li><code>&amp;str</code>, es un array <code>&amp;[u8]</code> que apunta a una secuencia UTF-8 válida. Vamos, en C++ tenemos los <code>std::vector</code>, que sería en nuestro caso el <code>String</code>, mientras que el <code>v[i]</code> sería el <code>&amp;str</code>, más o menos</li>
+</ul>
+<p>Las funciones implementadas en ambas son las de siempre. En el caso de <code>str</code>:</p>
+<ul>
+<li><code>.len()</code> =&gt; devuelve el tamaño en BYTES, no caracteres</li>
+<li><code>.is_empty()</code> =&gt; <code>true</code> si tiene un tamaño de 0 bytes</li>
+<li><code>.as_bytes()</code> =&gt; devuelve una secuencia de bytes, un <code>&amp;[u8]</code></li>
+<li><code>.as_bytes_mut()</code> =&gt; lo mismo pero mutable y debe estar dentro de un <code>unsafe{...}</code></li>
+<li><code>.as_ptr()</code> =&gt; devuelve un puntero al inicio</li>
+<li><code>.as_mut_ptr()</code> =&gt; lo mismo pero mutable</li>
+<li><code>.get(INDEX)</code> =&gt; es la versión segura de <code>str[INDEX]</code>, devolviendo <code>None</code> en caso de OOB, mientras que en segundo caso hubiera hecho un <code>panic!</code>. Podemos ver si es <code>None</code> o no con <code>.is_none()</code> justo después</li>
+<li><code>.get_mut(INDEX)</code> =&gt; lo mismo pero mutable</li>
+<li><code>.split_at(INDEX)</code> =&gt; un <code>split</code> de toda la vida, está también implementado como en todos lados</li>
+<li><code>.split_at_mut(INDEX)</code></li>
+<li><code>.chars()</code> =&gt; devuelve un iterador de <code>char</code></li>
+<li><code>.bytes()</code> =&gt; devuelve un iterador de <code>bytes</code></li>
+<li><code>.split_whitespace()</code> =&gt; <code>.split(&quot; &quot;)</code> pero teniendo en cuenta de todo, es decir, multi espacios, <code>\t</code>...</li>
+<li><code>.lines()</code> =&gt; <code>.split(&quot;\n&quot;)</code> además de <code>\r</code></li>
+<li><code>.find(PATTERN)</code> =&gt; RE, caracteres, strings... pero sólo la primera ocurrencia (la última con <code>rfind</code>)</li>
+<li><code>.matches(PATTERN)</code> =&gt; devuelve un iterador con todas las ocurrencias</li>
+</ul>
+<p>y muchas más. En el caso de <code>String</code> son algunas de arriba con funciones típicas de los vectores. Paso de ponerlas, la verdad (hay un <code>.replace(str, str)</code> que cambia las ocurrencias del primero por el segundo). Lo importante es saber cómo inicializar los <code>String</code>, que suele ser con</p>
+<pre><code class="language-rust  ignore">let var = String::from(&quot;ahjsdgashd&quot;);</code></pre>
+<p>o haciendo un casting a un entero</p>
+<pre><code class="language-rust  ignore">let var = &quot;543354&quot;.parse::&lt;i32&gt;();</code></pre>
+<p>También está el raw para no hacer escapes de caracteres especiales con <code>r</code></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="arrays"><a class="header" href="#arrays">Arrays</a></h1>
+<p>Esta parte es muy corta. Básicamente se definen como</p>
+<pre><code class="language-rust  ignore">let NOMBRE: [TIPO; TAMAÑO] = [1, 2, ...]; // con valores
+let NOMBRE: [TIPO; TAMAÑO] = [VALOR; TAMAÑO]; // con un valor por defecto</code></pre>
+<p>El <code>sizeof()</code> en Rust se llama con <code>mem::size_of_val(&amp;NOMBRE)</code> para devolver el tamaño en BYTES. Hay índices tipo <code>v[i]</code> o los <code>.get(INDEX)</code>, <code>.len()</code> para el número real de elementos...</p>
+<p>Para los cortes tipo <code>[inicio:fin:step]</code> de Python se puede hacer <code>[inicio..fin]</code>, aunque la forma más sencilla es con</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    
+    let sliced: Vec&lt;_&gt; = numbers[2..8].iter().step_by(3).copied().collect();
+
+    println!(&quot;{:?}&quot;, sliced); // Output: [2, 5]
+}</code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tuplas"><a class="header" href="#tuplas">Tuplas</a></h1>
+<p>Esta parte es muy sencilla. Básicamente te permiten meter y hacer lo que quieras con las tuplas. Se suelen usar como returns de funciones al permitirte meter cosas de diferentes tipos</p>
+<pre><code class="language-rust  ignore">let random = ((1u8, 2u16, &quot;ajsdas&quot;), (true, -1i8), 'o');</code></pre>
+<p>Para sacarlos, podemos hacer un <code>random.INDEX.SUBINDEX.SUBSUBINDEX...</code> como si fuese una matriz rara</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="structs"><a class="header" href="#structs">Structs</a></h1>
+<p>Lo mismo que en C++, más o menos.</p>
+<pre><pre class="playground"><code class="language-rust">struct LQSEA {
+    random: u8,
+    eing: bool
+}
+
+fn main() {
+    let num = 12;
+    let a = false;
+    let var = LQSEA {random: num, eing: a};
+    println!(&quot;random={} y eing={}&quot;, var.random, var.eing);
+}</code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="enums"><a class="header" href="#enums">Enums</a></h1>
+<p>Seguimos para bingo. Lo bueno es que podemos hacer un <code>use ENUM::*</code> y tenemos valores más explícitos y legibles.</p>
+<pre><code class="language-rust  ignore">enum ENUM {
+    Vino,
+    Cerveza,
+    Ginebra
+}
+
+fn main() {
+    use ENUM::*;
+    
+    let vino = Vino;
+    let cerveza = Cerveza;
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="box"><a class="header" href="#box">Box</a></h1>
+<p>Se almacenan en el heap y tienen un funcionamiento interesante. Al ir fuera de scope, se llama a su destructor y se libera la memoria asociada de forma automática. Son los punteros de siempre, accediendo al valor con <code>*</code>:</p>
+<pre><pre class="playground"><code class="language-rust  igore"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let ptr: Box&lt;TIPO&gt; = Box::new(TIPO);
+let value = *ptr; 
+<span class="boring">}</span></code></pre></pre>
+<p>pudiendo ser <code>TIPO</code> otro <code>Box&lt;TIPO&gt;</code> random a un struct o lo que sea. Es un <code>malloc</code>, más o menos. El resto de variables se almacenan en el stack</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vectores"><a class="header" href="#vectores">Vectores</a></h1>
+<p>Hay varias formas de inicializar vectores. La primera es a través de iteradores:</p>
+<pre><code class="language-rust  ignore">let VECTOR: Vec&lt;TIPO&gt; = ITERADOR.collect();</code></pre>
+<p>pudiendo ser <code>ITERADOR</code> una variable random a la que se le ha hecho un <code>.iter()</code>. La segunda es con macros:</p>
+<pre><code class="language-rust  ignore">let VECTOR = vec![1, 2, 3, ...];
+let VECTOR = vec![VALOR; TAMAÑO];</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="option"><a class="header" href="#option">Option</a></h1>
+<p>Consiste en un <code>enum</code> que representa un valor por defecto <code>None</code> para indicar que algo malo ha pasado y un <code>Some(VALUE)</code> para indicar lo contrario, devolviendo el <code>VALUE</code>. Es un poco raro, así que he cogido el ejemplo de la documentación original y lo he limpiado:</p>
+<pre><pre class="playground"><code class="language-rust">fn checked_division(dividend: i32, divisor: i32) -&gt; Option&lt;i32&gt; {
+    if divisor == 0 {
+        // Error
+        None
+    } else {
+        // Resultado
+        Some(dividend / divisor)
+    }
+}
+
+fn try_division(dividend: i32, divisor: i32) {
+    match checked_division(dividend, divisor) {
+        None =&gt; println!(&quot;{} / {} failed!&quot;, dividend, divisor),
+        Some(quotient) =&gt; {
+            println!(&quot;{} / {} = {}&quot;, dividend, divisor, quotient)
+        },
+    }
+}
+
+fn main() {
+    try_division(4, 2);
+    try_division(1, 0);
+
+    // Asignaciones a variables deben especificar el tipo esperado
+    let none: Option&lt;i32&gt; = None;
+    let _equivalent_none = None::&lt;i32&gt;;
+
+    let optional_float = Some(0f32);
+
+    // .unwrap() es para sacar el valor del Option
+    println!(&quot;{:?} unwraps to {:?}&quot;, optional_float, optional_float.unwrap());
+
+    // Si es un None, hace un panic!
+    println!(&quot;{:?} unwraps to {:?}&quot;, none, none.unwrap());
+}</code></pre></pre>
+<p>Respecto a <code>.unwrap()</code>, devuelve el interior del <code>Option</code> o aborta con un <code>panic!</code>. Podemos cambiarlo a <code>.expect()</code> para que nos de un mensaje en caso de error. Se usa más con el <code>Result</code>, al poder meterle texto al <code>Err</code>. En el caso del <code>Option</code> tenemos los <code>?</code>, que devuelven el valor del <code>Option</code> o abortan LA FUNCIÓN ACTIVA y devuelven <code>None</code>.</p>
+<p>También podemos usar <code>.map(CLOSURE)</code> para encadenar varios <code>.map</code> y sus resultados. Hacerlo secuencial y de forma funcional, vamos:</p>
+<pre><code class="language-rust  ignore">// Peel, chop, y cook secuencialmente
+fn process(food: Option&lt;Food&gt;) -&gt; Option&lt;Cooked&gt; {
+    food.map(|f| Peeled(f))
+        .map(|Peeled(f)| Chopped(f))
+        .map(|Chopped(f)| Cooked(f))
+}</code></pre>
+<p>Sin embargo, es un poco meh al ir encadenando <code>Option&lt;Option&lt;Option...&gt;</code> hasta el infinito y más allá, por lo que usamos el <code>.and_then(FUNC)</code>.</p>
+<p>Más en <a href="https://doc.rust-lang.org/rust-by-example/error/option_unwrap/defaults.html">1</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="result"><a class="header" href="#result">Result</a></h1>
+<p>Esto es una alternativa al <code>Option</code> que es mucho más versátil, al permitirnos devolver un mensaje en caso de error.</p>
+<ul>
+<li><code>Ok(VALUE)</code> =&gt; como el <code>Some</code></li>
+<li><code>Err(ERROR)</code> =&gt; que devuelve un mensaje de error hecho por nosotros</li>
+</ul>
+<p>Se pueden usar con un match tipo el ejemplo de la documentación oficial:</p>
+<pre><code class="language-rust  ignore">// Ignorad el funcionamiento, sólo el uso de Ok y Err
+fn op(x: f64, y: f64) -&gt; f64 {
+    match checked::div(x, y) {
+        Err(why) =&gt; panic!(&quot;{:?}&quot;, why),
+        
+        Ok(ratio) =&gt; match checked::ln(ratio) {
+            Err(why) =&gt; panic!(&quot;{:?}&quot;, why),
+            
+            Ok(ln) =&gt; match checked::sqrt(ln) {
+                Err(why) =&gt; panic!(&quot;{:?}&quot;, why),
+                Ok(sqrt) =&gt; sqrt,
+            },
+        },
+    }
+}</code></pre>
+<p>Para evitarnos escribir código similar al de arriba por cada función que devuelva <code>Ok/Err</code>, que son muchísismas, existe el operador <code>?</code>, que básicamente es lo mismo con la diferencia de que si falla, hace un <code>return Err(From::from(err))</code> que viene a ser un return anticipado, un <code>catch</code>, vamos.</p>
+<p>Hay más ejemplos en la <a href="https://doc.rust-lang.org/std/result/index.html">documentación oficial</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hashmap"><a class="header" href="#hashmap">Hashmap</a></h1>
+<p>Los <code>dict</code> de Python. Se inicializan con <code>Hashmap::new()</code> y se usan de la siguiente manera:</p>
+<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
+
+fn main() {
+    let mut hm = HashMap::new();
+    
+    hm.insert(&quot;HOLO&quot;, 122);
+    hm.insert(&quot;SADA&quot;, 8217);
+    
+    hm.remove(&quot;SADA&quot;);
+    
+    println!(&quot;key={} y value={:?}&quot;, &quot;HOLO&quot;, hm.get(&amp;&quot;HOLO&quot;).unwrap())
+}</code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="random"><a class="header" href="#random">Random</a></h1>
+<p>Existen los siguientes para los tipos de la libreria estándar, mostrándose con <code>println!</code>:</p>
+<ul>
+<li><code>{}</code> ==&gt; <code>Display</code> trait</li>
+<li><code>{:?}</code> == <code>Debug</code> trait</li>
+<li><code>{:x?}</code> == <code>Debug</code> trait con hex en minúsculas</li>
+<li><code>{:X?}</code> == <code>Debug</code> trait con hex en mayúsculas</li>
+<li><code>{:o}</code> == Octal</li>
+<li><code>{:x}</code> == Hex en minúsculas</li>
+<li><code>{:X}</code> == Hex en mayúsculas</li>
+<li><code>{:b}</code> == Binario</li>
+<li><code>{:e}</code> == Exponente en minúscula</li>
+<li><code>{:E}</code> ==&gt; Exponente en mayúscula </li>
+</ul>
+<p>Para poder hacer un <code>.toString()</code> de los de Java, tenemos que hacer una de dos. O bien usamos el macro <code>#[derive(Debug)]</code> y luego un <code>{:#?}</code> en el <code>println!</code> tipo</p>
+<pre><pre class="playground"><code class="language-rust">#[derive(Debug)]
+struct LQSEA {
+    random: u8
+}
+
+fn main() {
+    let num = 12;
+    let var = LQSEA {random: num};
+    println!(&quot;{:#?}&quot;, var);
+}</code></pre></pre>
+<p>teniendo luego que implementar para el resto con</p>
+<pre><pre class="playground"><code class="language-rust">use std::fmt;
+
+#[derive(Debug)]
+struct LQSEA {
+    random: u8
+}
+
+
+impl fmt::Display for LQSEA {
+    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+        // self.ELEMENTO para acceder a los elementos del struct
+        // ten en cuenta que no hay un ; al final, esto es un return implícito, más o menos
+        // antes de esto se pueden hacer operaciones como en cualquier función
+        write!(f, &quot;PON LO QUE QUIERAS QUE EL ELEMENTO ES {}&quot;, self.random)
+    }
+}
+
+
+fn main() {
+    let num = 12;
+    let var = LQSEA {random: num};
+    println!(&quot;{}&quot;, var);
+}</code></pre></pre>
+<p>o bien dejarnos de <code>#[derive(Debug)]</code> e implementar todos los formatos con <code>fmt::FORMAT</code> tal y como hemos hecho arriba</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="control"><a class="header" href="#control">Control</a></h1>
+<p>Referencia de las estructuras de control disponibles y las formas de trabajar con ellas.</p>
+<ul>
+<li><a href="Control/Loop.html">Loop</a></li>
+<li><a href="Control/For.html">For</a></li>
+<li><a href="Control/Match.html">Match</a></li>
+<li><a href="Control/Random.html">Random</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="loop"><a class="header" href="#loop">Loop</a></h1>
+<p>Es un <code>while(true)</code> pero con un nombre más yqs, son ganas de complicar aún más el vocabulario del lenguaje.</p>
+<pre><code class="language-rust  ignore">loop {
+    if TECUENTO {
+        break;
+    
+    } else {
+        continue; // redundante, ya lo sé, déjame
+    
+    }      
+}</code></pre>
+<p>Se pueden meter unos dentro de otros y les podemos asignar nombres (<code>lifetimes</code>) para romperlos desde dentro. Mira el ejemplo:</p>
+<pre><code class="language-rust  ignore">'fuera: loop {
+    ...
+    'dentro: loop {
+
+        break; // rompe 'dentro
+        break 'fuera; // rompe ambos
+    }
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="for"><a class="header" href="#for">For</a></h1>
+<p>Lo único relevante es el tema de los rangos:</p>
+<pre><code class="language-rust  ignore">// el rango va de [inicio, fin)
+for i in inicio..fin {
+    cositas
+}
+
+// el rango va de [inicio, fin]
+for i in inicio..=fin {
+    cositas
+}
+
+// recorrer cosas
+for elemento in iterador {
+    cositas
+}</code></pre>
+<p>Respecto al caso de los iteradores, pueden ser:</p>
+<ul>
+<li><code>.iter()</code> =&gt; &amp;cada elemento, de manera que se puede reutilizar la colección después del bucle</li>
+<li><code>.into_iter()</code> =&gt; consume la colección, por lo que desaparece después de finalizar el bucle</li>
+<li><code>.iter_mut()</code> =&gt; como <code>.iter()</code> pero con la posibilidad de modificar los elementos</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="match"><a class="header" href="#match">Match</a></h1>
+<p>Un switch, vamos.</p>
+<pre><code class="language-rust  ignore">match VAR {
+    VALUE =&gt; ..., // un único valor
+    VALUE | VALUE | VALUE =&gt; ..., // varios valores
+    VALUE..VALUE =&gt; ..., // rangos
+    _ =&gt; ... // default
+}</code></pre>
+<p>Lo único interesante que tienen es la forma de acceder al <code>VAR</code> desde dentro del <code>match</code>. Hay varios casos, que los voy a sacar de la documentación oficial:</p>
+<pre><code class="language-rust  ignore">// Tuplas
+match tupla {
+    (0, y, z) =&gt; println!(&quot;First is `0`, `y` is {:?}, and `z` is {:?}&quot;, y, z),
+    (1, ..)  =&gt; println!(&quot;First is `1` and the rest doesn't matter&quot;),
+    (.., 2)  =&gt; println!(&quot;last is `2` and the rest doesn't matter&quot;),
+    (3, .., 4)  =&gt; println!(&quot;First is `3`, last is `4`, and the rest doesn't matter&quot;),
+    _      =&gt; println!(&quot;It doesn't matter what they are&quot;),
+}
+
+
+// Arrays
+match array {
+    [0, second, third] =&gt;
+        println!(&quot;array[0] = 0, array[1] = {}, array[2] = {}&quot;, second, third),
+
+    // Ignoramos valores únicos con _
+    [1, _, third] =&gt; println!(
+        &quot;array[0] = 1, array[2] = {} and array[1] was ignored&quot;,
+        third
+    ),
+
+    [-1, second, ..] =&gt; println!(
+        &quot;array[0] = -1, array[1] = {} and all the other ones were ignored&quot;,
+        second
+    ),
+
+    // Or store them in another array/slice (the type depends on
+    // that of the value that is being matched against)
+    [3, second, tail @ ..] =&gt; println!(
+        &quot;array[0] = 3, array[1] = {} and the other elements were {:?}&quot;,
+        second, tail
+    ),
+
+    // Combining these patterns, we can, for example, bind the first and
+    // last values, and store the rest of them in a single array
+    [first, middle @ .., last] =&gt; println!(
+        &quot;array[0] = {}, middle = {:?}, array[2] = {}&quot;,
+        first, middle, last
+    ),
+}
+
+
+// Enums se deducen de lo de arriba
+// Los structs tres cuartos de lo mismo, sólo que haciendo una inicialización rara
+ match foo {
+    Foo { x: (1, b), y } =&gt; println!(&quot;First of x is 1, b = {},  y = {} &quot;, b, y),
+    
+    // puedes cambiar el orden
+    Foo { y: 2, x: i } =&gt; println!(&quot;y is 2, i = {:?}&quot;, i),
+    Foo { y, .. } =&gt; println!(&quot;y = {}, we don't care about x&quot;, y),
+}</code></pre>
+<p>También se puede añadir una condición en los matches antes de los <code>=&gt;</code></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="random-1"><a class="header" href="#random-1">Random</a></h1>
+<p>El resto me la pela</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="funciones"><a class="header" href="#funciones">Funciones</a></h1>
+<p>Cosas relacionadas con las funciones y su integración con otras estructuras del lenguaje.</p>
+<ul>
+<li><a href="Funciones/Closures.html">Closures</a></li>
+<li><a href="Funciones/Funcional.html">Funcional</a></li>
+<li><a href="Funciones/M%C3%A9todos.html">Métodos</a></li>
+<li><a href="Funciones/Random.html">Random</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="closures"><a class="header" href="#closures">Closures</a></h1>
+<p>Son como lambdas:</p>
+<pre><code class="language-rust  ignore">let resultado = | VAR: TIPO | -&gt; TIPO { 
+    cositas // si es una sentencia se pueden omitir los {}
+}
+
+let void_lambda = || &quot;CURRU&quot;;</code></pre>
+<p>Y yqs, esto es un pijazo que no tiene mucho sentido, mira <a href="https://doc.rust-lang.org/rust-by-example/fn/closures/input_parameters.html">1</a>, <a href="https://doc.rust-lang.org/rust-by-example/fn/closures/anonymity.html">2</a>, <a href="https://doc.rust-lang.org/rust-by-example/fn/closures/input_functions.html">3</a> y <a href="https://doc.rust-lang.org/rust-by-example/fn/closures/output_parameters.html">4</a> para llorar y mandar a tomar por culo el lenguaje este</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="funcional"><a class="header" href="#funcional">Funcional</a></h1>
+<p>Básicamente es ir encadenando funciones en vez de hacer cosas imperativas tipo C++. Ejemplo de la documentación oficial:</p>
+<pre><code class="language-rust  ignore">// Calcular la suma de los números impares al cuadrado por debajo de 1000
+let upper = 1000;
+let mut acc = 0;
+for n in 0.. {
+    let n_squared = n * n;
+    if n_squared &gt;= upper {
+        // Break loop if exceeded the upper limit
+        break;
+        
+    } else if is_odd(n_squared) {
+        acc += n_squared;
+        
+    }
+}
+
+// Enfoque funcional
+let sum_of_squared_odd_numbers: u32 = (0..).map(|n| n * n)                             // función a calcular
+                                           .take_while(|&amp;n_squared| n_squared &lt; upper) // condición
+                                           .filter(|&amp;n_squared| is_odd(n_squared))     // condición
+                                           .sum();                                     // suma</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="métodos"><a class="header" href="#métodos">Métodos</a></h1>
+<p>Hay dos tipos de funciones que pueden ser asignadas a un tipo random.</p>
+<pre><code class="language-rust  ignore">// funciones asociadas, las cuales no tienen porqué ser llamadas por una variable ya instanciada, por lo que se suelen usar como constructores
+impl TIPO {
+    fn FUNC(ARGS) -&gt; TIPO { // si es un constructor, puede no retornar nada
+        cositas    
+    }
+}
+
+// métodos, que cambian las características de una variable ya instanciada
+impl TIPO {
+    fn FUNC(&amp;self, ARGS) -&gt; LQSEA {
+        cositas accediendo a los elementos de la variable con self.ELEMENTO
+    }
+    
+    fn FUNC(mut &amp;self, ARGS) { // si queremos que se modifique a sí mismo
+        cositas
+    }
+    
+    fn FUNC(self) { // actúa como destructor al llamar a esta función
+        cositas
+    }
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="random-2"><a class="header" href="#random-2">Random</a></h1>
+<p>Las funciones que nunca llegan a hacer un return se marcan con un <code>!</code> en el tipo que devuelven. La que se implementa en los loops de inicialización del SO</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="módulos"><a class="header" href="#módulos">Módulos</a></h1>
+<p>Dependencias y librerias, una forma de representar archivos <code>.h</code> o paquetes de Python de los de siempre.</p>
+<ul>
+<li><a href="M%C3%B3dulos/Use.html">Use</a></li>
+<li><a href="M%C3%B3dulos/Mod.html">Mod</a></li>
+<li><a href="M%C3%B3dulos/Random.html">Random</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="use"><a class="header" href="#use">Use</a></h1>
+<p>Es el import o el include de Python o C/C++ o cualquier lenguaje que se te ocurra (pudiendo usar algo estándar van y hacen el use por la cara).</p>
+<pre><code class="language-rust  ignore">use crate::MOD::FUNC; // una función/elemento
+use crate::MOD::{ // para una lista de funciones/elementos
+    FUNC,
+    ELEM,
+    ...,
+} 
+use crate::MOD::*; // mételo todo papi</code></pre>
+<p>También está el <code>use ... as ...</code> para no tener que escribir las rutas completas cada vez que llames a un lo que sea</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="mod"><a class="header" href="#mod">Mod</a></h1>
+<p>Pudiendo hacer librerías como la gente normal y se ponen a rizar el rizo aún más. En fin.</p>
+<p>Básicamente lo que vas a utilizar es lo siguiente:</p>
+<pre><code class="language-rust  ignore">mod MOD {
+    fn FUNC(ARGS) { // función privada
+        // cositas
+    }
+    
+    pub fn FUN(ARGS) { // función pública
+        // cositas
+    }
+    
+    pub(crate) fn FUNC(ARGS) { // públicas en el crate y no fuera de él
+        // cositas
+    }
+}</code></pre>
+<p>Si quieres mirar más, te lees la <a href="https://doc.rust-lang.org/rust-by-example/mod/visibility.html">documentación oficial</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="random-3"><a class="header" href="#random-3">Random</a></h1>
+<p>Lo típico al usar dependencias. Sigue con el siguiente capítulo</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="scope"><a class="header" href="#scope">Scope</a></h1>
+<p>Lifetimes, ownerships y esas cosas.</p>
+<ul>
+<li><a href="Scope/Borrowing.html">Borrowing</a></li>
+<li><a href="Scope/Lifetimes.html">Lifetimes</a></li>
+<li><a href="Scope/Ownerships.html">Ownerships</a></li>
+<li><a href="Scope/Random.html">Random</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="borrowing"><a class="header" href="#borrowing">Borrowing</a></h1>
+<p>Para evitar lo dicho en <a href="Scope/Ownerships.html">Ownerships</a>, podemos pasar los argumentos por referencia (<code>&amp;T</code> en vez de <code>T</code>).</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn FUNC(var: TIPO) { // le quita el dominio al caller de la variable var y la elimina al salir de la función
+    cositas
+}
+
+fn FUN(var: &amp;TIPO) { // toma una referencia y NO la destruye al salir de la función
+    cositas
+}
+<span class="boring">}</span></code></pre></pre>
+<p>El caso de arriba toma referencias inmutables, por lo que para las mutables necesitamos poner <code>&amp;mut TIPO</code>. Sin embargo, no se permiten varias referencias mutables al mismo tiempo, lo que significa que primero haces una y la cambias y luego las demás de forma secuencial.</p>
+<p>Lo siguiente es equivalente:</p>
+<pre><code class="language-rust  ignore">let ref VAR1 = VAR2;
+let VAR1 = &amp;VAR2;</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lifetimes"><a class="header" href="#lifetimes">Lifetimes</a></h1>
+<p><a href="https://doc.rust-lang.org/rust-by-example/scope/lifetime/explicit.html">EING</a>. No toques esto a no ser que sea de vida o muerte</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ownerships"><a class="header" href="#ownerships">Ownerships</a></h1>
+<p>Esto otra fumada. Básicamente es que podemos copiar o mover variables, va ejemplo:</p>
+<pre><code class="language-rust  ignore">let x = 7;
+let y = x; // se copia x en i, por lo que ambos se pueden usar indistintamente
+
+let a = Box::new(5);
+let b = a; // se mueve el puntero de a a b, por lo que a deja de funcionar y desaparece, o algo así</code></pre>
+<p>Básicamente es que no va a haber dos punteros apuntando a lo mismo si se han inicializado uno en función del otro (yqs).</p>
+<p>No obstante, si se hace la asignación como una <code>ref</code>erencia, se puede seguir usando. Mira la <a href="https://doc.rust-lang.org/rust-by-example/scope/move.html">documentación oficial</a> si ves que no</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="random-4"><a class="header" href="#random-4">Random</a></h1>
+<p>Hay una cosa que han hecho bien y es que cuando una variable sale de scope, el sistema o lo que sea libera automáticamente los recursos asignados a dicha variable de forma automática. Esto se debe al trait <code>Drop</code>, por lo que para un tipo arbitrario que hayamos definido, podemos customizar su destructor con:</p>
+<pre><code class="language-rust  ignore">impl Drop for TIPO {
+    fn drop(&amp;mut self) {
+        cositas
+    }
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generics"><a class="header" href="#generics">Generics</a></h1>
+<p>Una cosa rarísima que más o menos se parece a los <code>template&lt;T&gt;</code> de C++.</p>
+<ul>
+<li><a href="Generics/Funciones.html">Funciones</a></li>
+<li><a href="Generics/Impl.html">Impl</a></li>
+<li><a href="Generics/Traits.html">Traits</a></li>
+<li><a href="Generics/Lazos.html">Lazos</a></li>
+<li><a href="Generics/Random.html">Random</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="funciones-1"><a class="header" href="#funciones-1">Funciones</a></h1>
+<p>Básicamente es que para definir funciones que acepten un tipo genérico hacemos como en C++ y ponemos <code>fn FUNC&lt;T&gt;(ARG: T)</code>.</p>
+<p>Y poco más, la verdad</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="impl"><a class="header" href="#impl">Impl</a></h1>
+<p>Al igual que con las funciones, podemos definir tipos genéricos con:</p>
+<pre><code class="language-rust  ignore">impl&lt;T&gt; VAR&lt;T&gt; {
+    cositas
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="traits"><a class="header" href="#traits">Traits</a></h1>
+<p>Tres cuartas de lo mismo:</p>
+<pre><code class="language-rust  ignore">trait TRAIR&lt;T&gt; {
+    cositas
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lazos"><a class="header" href="#lazos">Lazos</a></h1>
+<p>Para especificar que un tipo genérico tenga implementado algo tipo <code>Debug</code> o <code>Display</code>, podemos poner:</p>
+<pre><code class="language-rust  ignore">fn FUN&lt;T: Display&gt;(ARG: T) {
+    cositas
+}
+
+fn FUNC&lt;T: Display + Clone, U: Debug&gt;(ARG: T, ARG: U) {
+    cositas
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="random-5"><a class="header" href="#random-5">Random</a></h1>
+<p>No hay nada que decir, prosiga con su camino</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="traits-1"><a class="header" href="#traits-1">Traits</a></h1>
+<p>Esto es como las interfaces de C++, pudiendo implementar métodos por defecto. Se hace así:</p>
+<pre><code class="language-rust  ignore">trait PADRE {
+    // definimos las cabeceras de las funciones o las que son por defecto
+}
+impl PADRE for HIJO {
+    // sobrescribimpos las funciones que queramos e implementamos las que queramos
+}</code></pre>
+<p>Rust nos da por defecto varios traits que se pueden usar con <code>#[derive]</code>:</p>
+<ul>
+<li>Comparación =&gt; <code>Eq</code>, <code>PartialEq</code>, <code>Ord</code> y <code>PartialOrd</code></li>
+<li><code>Clone</code> =&gt; para hacer <code>T</code> de <code>&amp;T</code> a través de una copia</li>
+<li><code>Copy</code> =&gt; para que un tipo tienda a &quot;copiarse&quot; en vez de a &quot;moverse&quot;</li>
+<li><code>Debug</code> =&gt; para poder pasárselo a <code>println!</code> con <code>{:?}</code></li>
+</ul>
+<p>Se colocan justo encima de la definición del tipo.</p>
+<p>Para que una función random devuelva uno de estos tipos, debemos escribirla así:</p>
+<pre><code class="language-rust  ignore">fn FUNC(ARGS) -&gt; Box&lt;dyn PADRE&gt; {...} // con PADRE el trait como hemos dicho arriba</code></pre>
+<p>También podemos hacer herencia con:</p>
+<pre><code class="language-rust  ignore">trait PADRE {
+    ...
+}
+
+trait PADRE2 {
+    ...
+}
+
+trait HIJO: PADRE { // hereda de PADRE
+    ...
+}
+
+trait HIJO2: PADRE + PADRE2 { // hereda de PADRE y PADRE2
+    ...
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="macros"><a class="header" href="#macros">Macros</a></h1>
+<p>Los macros se escriben de la siguiente manera:</p>
+<pre><code class="language-rust  ignore">macro_rules! MACRO {
+    (ARGS) =&gt; { // puede no haber ARGS y que sea (), lo que implica que no lleva argumentos
+        cositas    
+    }
+}</code></pre>
+<p>No los veo útiles para mi, por lo que me la pela. Aquí hay enlaces a <a href="https://doc.rust-lang.org/rust-by-example/macros/designators.html">1</a>, <a href="https://doc.rust-lang.org/rust-by-example/macros/overload.html">2</a>, <a href="https://doc.rust-lang.org/rust-by-example/macros/repeat.html">3</a>, <a href="https://doc.rust-lang.org/rust-by-example/macros/dsl.html">4</a> y <a href="https://doc.rust-lang.org/rust-by-example/macros/variadics.html">5</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
